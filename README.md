@@ -1,46 +1,66 @@
-# Getting Started with Create React App
+# @suyoungj/react-simple-modal-ts
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple & customizable modal component for React with TypeScript support.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+```shell
+# npm
+npm i @suyoungj/react-simple-modal-ts
 
-### `npm start`
+# yarn
+yarn add @suyoungj/react-simple-modal-ts
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Imports
 
-### `npm test`
+```tsx
+import { Modal, useModal } from '@suyoungj/react-simple-modal-ts';
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage
 
-### `npm run build`
+The `useModal` hook provides an easy way to manage the state of the modal.
+It returns an object with:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- `isModalOpen`: a boolean that indicates whether the modal is currently open.
+- `openModal`: a function that opens the modal.
+- `closeModal`: a function that closes the modal.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Props
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The `Modal` component accepts the following props:
 
-### `npm run eject`
+- `isModalOpen` (required): a boolean that indicates whether the modal is currently open.
+- `onCloseModal` (required): a function that is called when the modal is closed. This function should set the isModalOpen state to false.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```tsx
+import { Modal, useModal } from '@suyoungj/react-simple-modal-ts';
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+function ModalExample() {
+	const { isModalOpen, openModal, closeModal } = useModal();
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+	return (
+		<>
+			<button onClick={openModal}>Open Modal</button>
+			<Modal isModalOpen={isModalOpen} onCloseModal={closeModal}>
+				{/* Modal Content Here */}
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+				incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+				nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+				eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+				sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</Modal>
+		</>
+	);
+}
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+export default ModalExample;
+```
 
-## Learn More
+## Features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Closed by clicking the backdrop
+- Closed when the Esc key is pressed
